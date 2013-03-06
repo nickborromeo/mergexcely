@@ -2,16 +2,12 @@ require 'spreadsheet'
 
 puts "Starting the script..."
 
-customer_service_cases = ARGV[0]
-cust_stat_service_cases = ARGV[1]
+customer_service_report = ARGV[0]
 
-service_book = Spreadsheet.open(customer_service_cases)
-customer_sat_book = Spreadsheet.open(cust_stat_service_cases)
+cs_report = Spreadsheet.open(customer_service_report)
 
-service_sheet = service_book.worksheet('Sheet2')
-customer_sat_sheet = customer_sat_book.worksheet('Sheet1')
-
-puts "Detected sheets of the two files"
+customer_service_stats = cs_report.worksheet(0)
+customer_service_cases = cs_report.worksheet(1)
 
 merge_book = Spreadsheet::Workbook.new
 merge_sheet = merge_book.create_worksheet #=> "Name of Sheet"
@@ -45,7 +41,7 @@ merge_sheet.row(0).push("Overall satisfaction")
 merge_sheet.row(0).push("Open-Ended Response")
 merge_sheet.row(0).push("How did you contact support?")
 
-merge_book.write "./merged_customer_service_cases_#{created_time}.xls"
+merge_book.write "./cs_cases/merged_customer_service_cases_#{created_time}.xls"
 
 puts "Finished generating the headers"
 
@@ -55,8 +51,8 @@ puts "Start adding data to the new file"
 
 count = 1 #start with row after the headers
 
-customer_sat_sheet.each do |customer_sat_row|
-  service_sheet.each do |service_row|
+customer_service_stats.each do |customer_sat_row|
+  customer_service_cases.each do |service_row|
     if (customer_sat_row[0] == service_row[0])
       merge_sheet.row(count).push(service_row[0])
       merge_sheet.row(count).push(service_row[1])
@@ -85,7 +81,7 @@ customer_sat_sheet.each do |customer_sat_row|
      
       count += 1
       puts "Merging matched entry"
-      merge_book.write "./merged_customer_service_cases_#{created_time}.xls"
+      merge_book.write "./cs_cases/merged_customer_service_cases_#{created_time}.xls"
     end
   end
 end
