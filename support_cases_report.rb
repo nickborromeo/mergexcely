@@ -53,8 +53,10 @@ puts "Finished generating the headers"
 puts "Start adding data to the new file"
 
 count = 1 #start with row after the headers
+line_number = 0
 
 support_cases.each do |sc_row|
+  puts "Processing #{line_number += 1}"
   support_stats.each do |cssc_row|
     if (cssc_row[0] == sc_row[0])
       merge_sheet.row(count).push(sc_row[0])
