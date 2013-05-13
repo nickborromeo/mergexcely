@@ -77,15 +77,15 @@ support_cases.each do |sc_row|
       merge_sheet.row(count).push(sc_row[15])
       merge_sheet.row(count).push(sc_row[16])
       merge_sheet.row(count).push(sc_row[17])
-      merge_sheet.row(count).push(cssc_row[1])
-      merge_sheet.row(count).push(cssc_row[2])
-      merge_sheet.row(count).push(cssc_row[3])
-      merge_sheet.row(count).push(cssc_row[4])
-      merge_sheet.row(count).push(cssc_row[5])
-      merge_sheet.row(count).push(cssc_row[6])
-      merge_sheet.row(count).push(cssc_row[7])
-      merge_sheet.row(count).push(cssc_row[8])
       merge_sheet.row(count).push(cssc_row[9])
+      merge_sheet.row(count).push(cssc_row[10])
+      merge_sheet.row(count).push(cssc_row[11])
+      merge_sheet.row(count).push(cssc_row[12])
+      merge_sheet.row(count).push(cssc_row[13])
+      merge_sheet.row(count).push(cssc_row[14])
+      merge_sheet.row(count).push(cssc_row[15])
+      merge_sheet.row(count).push(cssc_row[16])
+      merge_sheet.row(count).push(cssc_row[17])
       count += 1
       puts "Merging matched entry"
       merge_book.write "./support_cases/merged_support_cases_#{created_time}.xls"
